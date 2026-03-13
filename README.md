@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# Beth Notes
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Beth Notes is a gentle, pink‑themed note‑taking app built with Expo and React Native. It supports tags, pinning, archive/trash flows, search, and optional voice dictation/commands.
 
-## Get started
+## Features
+- Create, edit, search, and filter notes
+- Pin important notes
+- Archive or trash notes, with restore and delete‑forever actions
+- Tags with quick filters
+- Voice dictation and voice commands (requires dev build)
+- Local persistence with AsyncStorage
+
+## Tech Stack
+- Expo + React Native
+- Expo Router (tabs)
+- AsyncStorage for persistence
+- Expo Speech Recognition for voice input
+
+## Getting Started
 
 1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Start the app (Expo Go)
+```bash
+npx expo start
+```
 
-## Learn more
+## Voice Input (Dev Build Required)
+Expo Go does not include the speech recognition native module.
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Install the native dependency
+```bash
+npm install expo-speech-recognition
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. Build and run a dev client
+```bash
+npx expo run:android
+```
 
-## Join the community
+3. Start Metro with dev client mode
+```bash
+npx expo start --dev-client
+```
 
-Join our community of developers creating universal apps.
+## Project Structure
+- `app/_layout.jsx` root layout and navigation stack
+- `app/(tabs)/index.jsx` main Notes screen + editor
+- `app/(tabs)/explore.jsx` Archive/Trash screen
+- `lib/notes-store.js` persistence + settings
+- `constants/theme.ts` app color theme
+- `assets/images` app icons and splash assets
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Scripts
+- `npm run start` start Metro
+- `npm run android` start on Android
+- `npm run ios` start on iOS
+- `npm run web` start on web
+
+## Customization
+- Update app branding in `app.json`
+- Edit icons and splash in `assets/images`
+- Adjust colors in `constants/theme.ts`
