@@ -747,7 +747,7 @@ export default function NotesScreen() {
               Contact
             </ThemedText>
             <ThemedText style={[styles.privacyBody, { color: textColor }]}>
-              Email: support@example.com
+              Email: collinskimathi49@gmail.com
             </ThemedText>
 
             <ThemedText style={[styles.privacyMeta, { color: mutedColor }]}>
