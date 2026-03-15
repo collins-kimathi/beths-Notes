@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Modal,
   Pressable,
+  Linking,
   ScrollView,
   StyleSheet,
   Switch,
@@ -82,6 +83,7 @@ export default function NotesScreen() {
   const [editorVisible, setEditorVisible] = useState(false);
   const [privacyVisible, setPrivacyVisible] = useState(false);
   const [draft, setDraft] = useState(createDraft(DEFAULT_SETTINGS.defaultTag));
+  const privacyUrl = "https://collins-kimathi.github.io/beths-Notes/";
 
   // ── Note helpers ───────────────────────────────────────────────────────────
 
@@ -749,6 +751,14 @@ export default function NotesScreen() {
             <ThemedText style={[styles.privacyBody, { color: textColor }]}>
               Email: collinskimathi49@gmail.com
             </ThemedText>
+            <Pressable
+              onPress={() => Linking.openURL(privacyUrl)}
+              style={styles.privacyLinkButton}
+            >
+              <ThemedText style={[styles.privacyLinkText, { color: accent }]}>
+                View policy online
+              </ThemedText>
+            </Pressable>
 
             <ThemedText style={[styles.privacyMeta, { color: mutedColor }]}>
               Last updated: March 15, 2026
@@ -915,5 +925,7 @@ const styles = StyleSheet.create({
   privacyContent: { paddingBottom: 40, gap: 10 },
   privacyTitle: { fontSize: 14, fontWeight: "600", marginTop: 8 },
   privacyBody: { fontSize: 14, lineHeight: 20 },
+  privacyLinkButton: { alignSelf: "flex-start", marginTop: 2 },
+  privacyLinkText: { fontSize: 14, fontWeight: "600" },
   privacyMeta: { marginTop: 12, fontSize: 12 },
 });
