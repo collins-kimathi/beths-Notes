@@ -80,6 +80,7 @@ export default function NotesScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTag, setActiveTag] = useState("All");
   const [editorVisible, setEditorVisible] = useState(false);
+  const [privacyVisible, setPrivacyVisible] = useState(false);
   const [draft, setDraft] = useState(createDraft(DEFAULT_SETTINGS.defaultTag));
 
   // ── Note helpers ───────────────────────────────────────────────────────────
@@ -386,6 +387,17 @@ export default function NotesScreen() {
           <ThemedText style={[styles.subtitle, { color: mutedColor }]}>
             A gentle space for ideas and moments
           </ThemedText>
+          <Pressable
+            onPress={() => setPrivacyVisible(true)}
+            style={styles.privacyLink}
+          >
+            <ThemedText
+              type="defaultSemiBold"
+              style={{ color: accent }}
+            >
+              Privacy policy
+            </ThemedText>
+          </Pressable>
         </View>
         <Pressable
           style={[styles.newButton, { backgroundColor: accent }]}
@@ -603,6 +615,12 @@ export default function NotesScreen() {
               textAlignVertical="top"
             />
 
+            <View style={styles.loveNote}>
+              <ThemedText style={[styles.loveText, { color: mutedColor }]}>
+                Made with love from Collo
+              </ThemedText>
+            </View>
+
             <View
               style={[
                 styles.voicePanel,
@@ -658,6 +676,86 @@ export default function NotesScreen() {
           </ScrollView>
         </ThemedView>
       </Modal>
+
+      <Modal
+        visible={privacyVisible}
+        animationType="fade"
+        onRequestClose={() => setPrivacyVisible(false)}
+      >
+        <ThemedView style={styles.privacyScreen}>
+          <View style={styles.privacyHeader}>
+            <ThemedText type="subtitle">Privacy Policy</ThemedText>
+            <Pressable
+              onPress={() => setPrivacyVisible(false)}
+              style={styles.editorAction}
+            >
+              <ThemedText style={{ color: accent }}>Close</ThemedText>
+            </Pressable>
+          </View>
+
+          <ScrollView
+            contentContainerStyle={styles.privacyContent}
+            showsVerticalScrollIndicator={false}
+          >
+            <ThemedText style={[styles.privacyBody, { color: textColor }]}>
+              Beth Notes is a personal notes app. We don&apos;t require an
+              account, and your notes stay on your device unless you choose to
+              share them.
+            </ThemedText>
+
+            <ThemedText style={[styles.privacyTitle, { color: textColor }]}>
+              Data we process
+            </ThemedText>
+            <ThemedText style={[styles.privacyBody, { color: textColor }]}>
+              Notes, titles, and tags are saved locally on your device. The app
+              does not transmit your notes to our servers.
+            </ThemedText>
+
+            <ThemedText style={[styles.privacyTitle, { color: textColor }]}>
+              Voice input
+            </ThemedText>
+            <ThemedText style={[styles.privacyBody, { color: textColor }]}>
+              If you use voice input, your device&apos;s speech recognition
+              service may process audio to generate a transcript. We do not
+              store audio recordings or share them with third parties.
+            </ThemedText>
+
+            <ThemedText style={[styles.privacyTitle, { color: textColor }]}>
+              Permissions
+            </ThemedText>
+            <ThemedText style={[styles.privacyBody, { color: textColor }]}>
+              The microphone permission is used only to capture voice input when
+              you tap the mic button.
+            </ThemedText>
+
+            <ThemedText style={[styles.privacyTitle, { color: textColor }]}>
+              Data sharing
+            </ThemedText>
+            <ThemedText style={[styles.privacyBody, { color: textColor }]}>
+              We do not sell or share your data.
+            </ThemedText>
+
+            <ThemedText style={[styles.privacyTitle, { color: textColor }]}>
+              Data deletion
+            </ThemedText>
+            <ThemedText style={[styles.privacyBody, { color: textColor }]}>
+              You can delete notes in the app. Uninstalling the app removes all
+              local data stored by Beth Notes.
+            </ThemedText>
+
+            <ThemedText style={[styles.privacyTitle, { color: textColor }]}>
+              Contact
+            </ThemedText>
+            <ThemedText style={[styles.privacyBody, { color: textColor }]}>
+              Email: support@example.com
+            </ThemedText>
+
+            <ThemedText style={[styles.privacyMeta, { color: mutedColor }]}>
+              Last updated: March 15, 2026
+            </ThemedText>
+          </ScrollView>
+        </ThemedView>
+      </Modal>
     </ThemedView>
   );
 }
@@ -680,6 +778,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   subtitle: { marginTop: 6, fontSize: 14 },
+  privacyLink: { marginTop: 10, alignSelf: "flex-start" },
   newButton: { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 999 },
   searchBar: {
     borderWidth: 1,
@@ -791,6 +890,8 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginBottom: 20,
   },
+  loveNote: { alignItems: "center", marginBottom: 14 },
+  loveText: { fontSize: 12, fontStyle: "italic", letterSpacing: 0.4 },
   voicePanel: { borderRadius: 16, padding: 14, gap: 12, borderWidth: 1 },
   voiceRow: {
     flexDirection: "row",
@@ -804,4 +905,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
+  privacyScreen: { flex: 1, paddingHorizontal: 20, paddingTop: 24 },
+  privacyHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 12,
+  },
+  privacyContent: { paddingBottom: 40, gap: 10 },
+  privacyTitle: { fontSize: 14, fontWeight: "600", marginTop: 8 },
+  privacyBody: { fontSize: 14, lineHeight: 20 },
+  privacyMeta: { marginTop: 12, fontSize: 12 },
 });

@@ -27,7 +27,8 @@
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.itachi.bethnotes"
+      "package": "com.itachi.bethnotes",
+      "versionCode": 1
     },
     "web": {
       "output": "static",
